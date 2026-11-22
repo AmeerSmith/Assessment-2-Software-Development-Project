@@ -8,8 +8,9 @@ class Requisition:
     total_approved = 0
     total_pending = 0
     total_not_approved = 0
+2
 
-    def __init__(self, date, staff_id, staff_name):
+def __init__(self, date, staff_id, staff_name):
 
         self.date = date
         self.staff_id = staff_id
@@ -268,6 +269,7 @@ while another == "yes":
 
 
 #the manager decisions
+#the manager decisions
 for r in Requisition.all_requisitions:
 
     if r.status == "Pending":
@@ -278,9 +280,8 @@ for r in Requisition.all_requisitions:
 
         decision = input("Manager decision (Approved/Not approved/Leave): ")
 
-        if decision == "Approved" and r.status == "Approved":
+        if decision == "Approved" or decision == "Not approved":
             r.respond_to_requisition(decision)
-
 
 # Final thing
 Requisition.display_requisitions()
