@@ -1,16 +1,13 @@
-
 class Requisition:
 
-    
     next_id = 10001
     all_requisitions = []
     total_submitted = 0
     total_approved = 0
     total_pending = 0
     total_not_approved = 0
-2
 
-def __init__(self, date, staff_id, staff_name):
+    def __init__(self, date, staff_id, staff_name):
 
         self.date = date
         self.staff_id = staff_id
@@ -27,16 +24,7 @@ def __init__(self, date, staff_id, staff_name):
         Requisition.total_submitted += 1
         Requisition.total_pending += 1
 
-
-
-
-
-
-
-
-
-
-#Collects infor from the user
+    # Collects info from the user
     @classmethod
     def add_requisition(cls):
 
@@ -47,21 +35,7 @@ def __init__(self, date, staff_id, staff_name):
         staff_id = input("Staff ID: ")
         staff_name = input("Staff Name: ")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- #Create a reqobject
+        # Create a requisition object
         r = cls(date, staff_id, staff_name)
 
         print("Requisition ID:", r.requisition_id)
@@ -75,52 +49,31 @@ def __init__(self, date, staff_id, staff_name):
         while another == "yes":
 
             item_name = input("Item Name: ")
-            item_price = float(input("Item Price $  : "))
+            price_text = input("Item Price $  : ")
+
+            while price_text.replace(".", "", 1).isdigit() == False:
+                print("Please enter a number, e.g. 12.50")
+                price_text = input("Item Price $  : ")
+
+            item_price = float(price_text)
 
             items.append((item_name, item_price))
 
             another = input("Add another item yes/no: ").lower()
 
-
-
-
-
-
-
-
-
-
-
- #Cal total
-
+        # Calculate total
         r.requisitions_details(items)
 
         print("Total: $" + str(r.total))
 
-
-
-
-
-
-#Auto check approval
-
+        # Auto check approval
         r.approve_requisition()
 
         print("Status:", r.status)
 
         print("Approval Reference Number:", r.approval_ref)
 
-
-
-
-
-
-
-
-
-
-# Calculate requisition total
-
+    # Calculate requisition total
     def requisitions_details(self, items):
 
         total = 0
@@ -132,21 +85,7 @@ def __init__(self, date, staff_id, staff_name):
 
         return total
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- #Auto approval
-
+    # Auto approval
     def approve_requisition(self):
 
         if self.total <= 500:
@@ -158,20 +97,7 @@ def __init__(self, date, staff_id, staff_name):
             Requisition.total_pending -= 1
             Requisition.total_approved += 1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Managerresponse
+    # Manager response
     def respond_to_requisition(self, decision):
 
         if self.status != "Pending":
@@ -193,17 +119,7 @@ def __init__(self, date, staff_id, staff_name):
             Requisition.total_not_approved += 1
             Requisition.total_pending -= 1
 
-
-
-
-
-
-
-
-
-
-
-#Display all reqs
+    # Display all requisitions
     @classmethod
     def display_requisitions(cls):
 
@@ -219,14 +135,7 @@ def __init__(self, date, staff_id, staff_name):
             print("Status:", r.status)
             print("Approval Reference Number:", r.approval_ref)
 
-
-
-
-
-
-
-
-#Display stats
+    # Display stats
     @classmethod
     def requisition_statistics(cls):
 
@@ -237,12 +146,7 @@ def __init__(self, date, staff_id, staff_name):
         print("The total number of not approved requisitions:", cls.total_not_approved)
 
 
-
-
-
-
-
-#MAIN 
+# MAIN
 
 print("Welcome to the Requisition System")
 
@@ -254,22 +158,7 @@ while another == "yes":
 
     another = input("\nWould you like to submit another requisition? yes/no: ").lower()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#the manager decisions
-#the manager decisions
+# The manager decisions
 for r in Requisition.all_requisitions:
 
     if r.status == "Pending":
@@ -283,6 +172,6 @@ for r in Requisition.all_requisitions:
         if decision == "Approved" or decision == "Not approved":
             r.respond_to_requisition(decision)
 
-# Final thing
+# Final output
 Requisition.display_requisitions()
 Requisition.requisition_statistics()
