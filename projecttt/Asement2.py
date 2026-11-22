@@ -71,7 +71,7 @@ class Requisition:
 
         another = "yes"
 
-        while another == "yes":
+        while another == "yes"
 
             item_name = input("Item Name: ")
             item_price = float(input("Item Price $  : "))
@@ -105,7 +105,7 @@ class Requisition:
 
         r.approve_requisition()
 
-        print("Status:", r.status)
+        print("Status:", r.status
 
         print("Approval Reference Number:", r.approval_ref)
 
@@ -120,11 +120,11 @@ class Requisition:
 
 # Calculate requisition total
 
-    def requisitions_details(self, items):
+    def requisitions_details(self, items)
 
         total = 0
 
-        for item_name, cost in items:
+        for item_name, cost in items
             total += cost
 
         self.total = total
@@ -146,7 +146,7 @@ class Requisition:
 
  #Auto approval
 
-    def approve_requisition(self):
+    def approve_requisition(self)
 
         if self.total < 500:
 
@@ -241,7 +241,7 @@ class Requisition:
 
 
 
-#MAIN PROGRAM
+#MAIN 
 
 print("Welcome to the Requisition System")
 
@@ -268,7 +268,7 @@ while another == "yes":
 
 
 #the manager decisions
-for r in Requisition.all_requisitions:
+for r in Requisition.all_requisitions
 
     if r.status == "Pending":
 
